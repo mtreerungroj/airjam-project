@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "572642398542",
+    "firebase_url": "https://airjam-project.firebaseio.com",
+    "project_id": "airjam-project",
+    "storage_bucket": "airjam-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572642398542:android:808f984373d85f76",
+        "android_client_info": {
+          "package_name": "com.airjam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572642398542-8vh6v2aagssl6qp65k5316rmstd6pc9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZFh204bZQcp344OMEnApbyFWECso9mzk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
