@@ -7,7 +7,7 @@ import { COLOR, ThemeProvider } from 'react-native-material-ui'
 
 const uiTheme = {
   palette: {
-    primaryColor: COLOR.cyan500
+    primaryColor: COLOR.orange400
   },
   toolbar: {
     container: {
