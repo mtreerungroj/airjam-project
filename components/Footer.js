@@ -6,8 +6,8 @@ export default class Footer extends Component {
   render () {
     return (
       <BottomNavigation active={this.props.active} hidden={false}>
-        <BottomNavigation.Action key='service' icon='today' label='Service' />
-        <BottomNavigation.Action key='joblist' icon='bookmark-border' label='Job List' />
+        <BottomNavigation.Action key='service' icon='today' label='Service' onPress={() => this.props._handleChangePage('Service', 'service')} />
+        <BottomNavigation.Action key='joblist' icon='bookmark-border' label='Job List' onPress={() => this.props._handleChangePage('Job List', 'joblist')} />
         <BottomNavigation.Action key='setting' icon='settings' label='Setting' />
       </BottomNavigation>
     )

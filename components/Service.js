@@ -4,6 +4,6 @@ import Footer from './Footer'
 
 export default class Service extends Component {
   render () {
-    return <View>service here</View>
+    return <Text>service here</Text>
   }
 }

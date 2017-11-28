@@ -4,6 +4,6 @@ import Footer from './Footer'
 
 export default class JobList extends Component {
   render () {
-    return <View>Job list here</View>
+    return <Text>Job list here</Text>
   }
 }
