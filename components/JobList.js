@@ -25,16 +25,18 @@ export default class JobList extends Component {
   render () {
     return (
       <View>
-        <ListItem
-          divider
-          centerElement={{
-            primaryText: 'Primary text',
-            secondaryText: 'secondaryText',
-            tertiaryText: 'tertiaryText'
-          }}
-          rightElement={<Text>right element</Text>}
-          onPress={() => {}}
-        />
+        {jobItems.map((item, idx) => (
+          <ListItem
+            key={idx.toString()}
+            divider
+            centerElement={{
+              primaryText: item.title,
+              secondaryText: 'วันที่ ' + item.date,
+              tertiaryText: item.isComplete ? 'สถานะ: ดำเนินการเสร็จสิ้น' : 'สถานะ: กำลังดำเนินการ'
+            }}
+            onPress={() => {}}
+          />
+        ))}
       </View>
     )
   }
