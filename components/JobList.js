@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native'
+import firebase from '../config/firebase'
 import { COLOR } from 'react-native-material-ui'
 import { ListItem } from 'react-native-material-ui'
 import Footer from './Footer'
@@ -38,10 +39,34 @@ const jobItems = [
 ]
 
 export default class JobList extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      jobItems: []
+    }
+  }
+
+  componentDidMount () {
+    let jobItems = []
+    firebase
+      .database()
+      .ref('jobs')
+      .orderByChild('date')
+      .once('value')
+      .then(snapshot => {
+        snapshot.forEach(childSnapshot => {
+          jobItems.push(childSnapshot.val()) // AESC
+        })
+      })
+      .then(() => {
+        this.setState({ jobItems: jobItems.reverse() }) // DESC
+      })
+  }
+
   render () {
     return (
       <ScrollView style={styles.scrollView}>
-        {jobItems.map((item, idx) => {
+        {this.state.jobItems.map((item, idx) => {
           return (
             <ListItem
               key={idx.toString()}
