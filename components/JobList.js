@@ -51,6 +51,11 @@ export default class JobList extends Component {
                 secondaryText: 'วันที่ ' + item.date,
                 tertiaryText: item.isComplete ? 'สถานะ: ดำเนินการเสร็จสิ้น' : 'สถานะ: กำลังดำเนินการ'
               }}
+              rightElement={
+                item.isComplete
+                  ? <Image style={styles.imgElement} source={require('../assets/image/complete.png')} />
+                  : <Image style={styles.imgElement} source={require('../assets/image/not-complete.png')} />
+              }
             />
           )
         })}
@@ -66,6 +71,11 @@ const styles = {
     marginTop: 10,
     paddingBottom: 100,
     paddingVertical: 10
+  },
+  imgElement: {
+    width: 60,
+    height: 60,
+    marginRight: 10
   },
   listItem: {
     contentViewContainer: {
