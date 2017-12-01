@@ -19,6 +19,21 @@ const jobItems = [
     title: 'แอร์มีปัญหา: แอร์มีน้ำหยด',
     date: '14 พฤศจิกายน 2560',
     isComplete: true
+  },
+  {
+    title: 'ตรวจเช็คสภาพ',
+    date: '30 พฤศจิกายน 2560',
+    isComplete: false
+  },
+  {
+    title: 'ล้างแอร์',
+    date: '22 พฤศจิกายน 2560',
+    isComplete: false
+  },
+  {
+    title: 'แอร์มีปัญหา: แอร์มีน้ำหยด',
+    date: '14 พฤศจิกายน 2560',
+    isComplete: true
   }
 ]
 
