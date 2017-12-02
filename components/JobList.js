@@ -70,7 +70,13 @@ export default class JobList extends Component {
           return (
             <ListItem
               key={idx.toString()}
-              style={styles.listItem}
+              // style={getStyle}
+              style={getStyle(item.isComplete)}
+              // style={{
+              //   tertiaryText: {
+              //     color: item.isComplete ? COLOR.green500 : COLOR.red500
+              //   }
+              // }}
               centerElement={{
                 primaryText: item.title,
                 secondaryText: 'วันที่ ' + item.date,
@@ -101,16 +107,20 @@ const styles = {
     width: 60,
     height: 60,
     marginRight: 10
-  },
-  listItem: {
-    contentViewContainer: {
-      backgroundColor: COLOR.blueGrey100,
-      marginBottom: 5,
-      borderRadius: 10
-    },
-    container: {
-      borderWidth: 0,
-      borderRadius: 10
-    }
   }
 }
+
+const getStyle = isComplete => ({
+  contentViewContainer: {
+    backgroundColor: COLOR.blueGrey100,
+    marginBottom: 5,
+    borderRadius: 10
+  },
+  container: {
+    borderWidth: 0,
+    borderRadius: 10
+  },
+  tertiaryText: {
+    color: isComplete ? COLOR.green500 : COLOR.red500
+  }
+})
