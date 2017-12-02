@@ -4,6 +4,7 @@ import firebase from '../config/firebase'
 import { COLOR } from 'react-native-material-ui'
 import { ListItem } from 'react-native-material-ui'
 import Footer from './Footer'
+import { Bubbles } from 'react-native-loader'
 
 const jobItems = [
   {
@@ -42,7 +43,8 @@ export default class JobList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      jobItems: []
+      jobItems: [],
+      isLoading: true
     }
   }
 
@@ -59,39 +61,35 @@ export default class JobList extends Component {
         })
       })
       .then(() => {
-        this.setState({ jobItems: jobItems.reverse() }) // DESC
+        this.setState({ jobItems: jobItems.reverse(), isLoading: false }) // DESC
       })
   }
 
   render () {
-    return (
-      <ScrollView style={styles.scrollView}>
+    return this.state.isLoading
+      ? <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Bubbles size={10} color={COLOR.cyan500} />
+      </View>
+      : <ScrollView style={styles.scrollView}>
         {this.state.jobItems.map((item, idx) => {
           return (
             <ListItem
               key={idx.toString()}
-              // style={getStyle}
               style={getStyle(item.isComplete)}
-              // style={{
-              //   tertiaryText: {
-              //     color: item.isComplete ? COLOR.green500 : COLOR.red500
-              //   }
-              // }}
               centerElement={{
                 primaryText: item.title,
                 secondaryText: 'วันที่ ' + item.date,
                 tertiaryText: item.isComplete ? 'สถานะ: ดำเนินการเสร็จสิ้น' : 'สถานะ: กำลังดำเนินการ'
               }}
               rightElement={
-                item.isComplete
-                  ? <Image style={styles.imgElement} source={require('../assets/image/complete.png')} />
-                  : <Image style={styles.imgElement} source={require('../assets/image/not-complete.png')} />
-              }
-            />
+                  item.isComplete
+                    ? <Image style={styles.imgElement} source={require('../assets/image/complete.png')} />
+                    : <Image style={styles.imgElement} source={require('../assets/image/not-complete.png')} />
+                }
+              />
           )
         })}
       </ScrollView>
-    )
   }
 }
 
@@ -107,7 +105,8 @@ const styles = {
     width: 60,
     height: 60,
     marginRight: 10
-  }
+  },
+  view: {}
 }
 
 const getStyle = isComplete => ({
