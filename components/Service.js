@@ -10,25 +10,25 @@ export default class Service extends Component {
         <View style={styles.rowContainer}>
 
           <View style={styles.rowElement}>
-            <ServiceItem />
+            <ServiceItem service='installation' />
           </View>
           <View style={styles.rowElement}>
-            <ServiceItem />
-          </View>
-        </View>
-
-        <View style={styles.rowContainer}>
-          <View style={styles.rowElement}>
-            <ServiceItem />
-          </View>
-          <View style={styles.rowElement}>
-            <ServiceItem />
+            <ServiceItem service='cleaning' />
           </View>
         </View>
 
         <View style={styles.rowContainer}>
           <View style={styles.rowElement}>
-            <ServiceItem />
+            <ServiceItem service='moving' />
+          </View>
+          <View style={styles.rowElement}>
+            <ServiceItem service='checking' />
+          </View>
+        </View>
+
+        <View style={styles.rowContainer}>
+          <View style={styles.rowElement}>
+            <ServiceItem service='problem' />
           </View>
           <View style={styles.rowElement} />
 

@@ -7,10 +7,28 @@ export default class ServiceItem extends Component {
     console.log('press')
   }
 
+  _renderImage = service => {
+    switch (service) {
+      case 'installation':
+        return <Image style={styles.imageElement} source={require('../assets/image/s-installation.png')} />
+      case 'cleaning':
+        return <Image style={styles.imageElement} source={require('../assets/image/s-cleaning.png')} />
+      case 'moving':
+        return <Image style={styles.imageElement} source={require('../assets/image/s-moving.png')} />
+      case 'checking':
+        return <Image style={styles.imageElement} source={require('../assets/image/s-checking.png')} />
+      case 'problem':
+        return <Image style={styles.imageElement} source={require('../assets/image/s-problem.png')} />
+      default:
+        return false
+    }
+  }
+
   render () {
     return (
       <TouchableOpacity style={{ margin: 10 }} onPress={this._handlePress}>
-        <Image style={styles.imageElement} source={require('../assets/image/complete.png')} />
+        {this._renderImage(this.props.service)}
+        {/* <Image style={styles.imageElement} source={require('../assets/image/s-installation.png')} /> */}
       </TouchableOpacity>
     )
   }
