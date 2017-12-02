@@ -26,7 +26,7 @@ export default class ServiceItem extends Component {
 
   render () {
     return (
-      <TouchableOpacity style={{ margin: 10 }} onPress={this._handlePress}>
+      <TouchableOpacity onPress={this._handlePress}>
         {this._renderImage(this.props.service)}
         {/* <Image style={styles.imageElement} source={require('../assets/image/s-installation.png')} /> */}
       </TouchableOpacity>
