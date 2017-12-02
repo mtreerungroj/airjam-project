@@ -1,22 +1,37 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'
 import Footer from './Footer'
+import ServiceItem from './ServiceItem'
 
 export default class Service extends Component {
   render () {
     return (
       <View style={styles.viewContainer}>
         <View style={styles.rowContainer}>
-          <Text style={styles.rowElement}>Hello</Text>
-          <Text style={styles.rowElement}>World</Text>
+
+          <View style={styles.rowElement}>
+            <ServiceItem />
+          </View>
+          <View style={styles.rowElement}>
+            <ServiceItem />
+          </View>
         </View>
+
         <View style={styles.rowContainer}>
-          <Text style={styles.rowElement}>Hello</Text>
-          <Text style={styles.rowElement}>World</Text>
+          <View style={styles.rowElement}>
+            <ServiceItem />
+          </View>
+          <View style={styles.rowElement}>
+            <ServiceItem />
+          </View>
         </View>
+
         <View style={styles.rowContainer}>
-          <Text style={styles.rowElement}>Hello</Text>
-          <Text style={styles.rowElement}>World</Text>
+          <View style={styles.rowElement}>
+            <ServiceItem />
+          </View>
+          <View style={styles.rowElement} />
+
         </View>
       </View>
     )
@@ -30,7 +45,6 @@ const styles = {
   },
   rowContainer: {
     flex: 1,
-    backgroundColor: 'red',
     flexDirection: 'row',
     alignItems: 'center'
   },
