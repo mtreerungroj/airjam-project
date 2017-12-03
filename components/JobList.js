@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native'
-import firebase from '../config/firebase'
+import { getJobItems } from '../config/helper'
 import { COLOR } from 'react-native-material-ui'
 import { ListItem } from 'react-native-material-ui'
 import Footer from './Footer'
@@ -49,25 +49,13 @@ export default class JobList extends Component {
   }
 
   componentDidMount () {
-    let jobItems = []
-    firebase
-      .database()
-      .ref('jobs')
-      .orderByChild('date')
-      .once('value')
-      .then(snapshot => {
-        snapshot.forEach(childSnapshot => {
-          jobItems.push(childSnapshot.val()) // AESC
-        })
-      })
-      .then(() => {
-        this.setState({ jobItems: jobItems.reverse(), isLoading: false }) // DESC
-      })
+    const that = this
+    getJobItems().then(res => that.setState(res)).catch(res => that.setState(res))
   }
 
   render () {
     return this.state.isLoading
-      ? <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      ? <View style={styles.viewContainer}>
         <Bubbles size={10} color={COLOR.cyan500} />
       </View>
       : <ScrollView style={styles.scrollView}>
@@ -106,7 +94,11 @@ const styles = {
     height: 60,
     marginRight: 10
   },
-  view: {}
+  viewContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 }
 
 const getStyle = isComplete => ({
