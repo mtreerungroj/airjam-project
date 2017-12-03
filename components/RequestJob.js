@@ -31,7 +31,7 @@ export default class RequestJob extends Component {
   render () {
     return (
       <View style={{ flex: 1 }}>
-        <StepBar step={this.props.step} />
+        <StepBar step={this.props.step} _handleChangeStep={this.props._handleChangeStep} />
         <View style={{ flex: 1 }}>
           {this._renderBody()}
         </View>
