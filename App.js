@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Service from './components/Service'
 import JobList from './components/JobList'
+import RequestJob from './components/RequestJob'
 
 const uiTheme = {
   palette: {
@@ -16,6 +17,7 @@ const uiTheme = {
     }
   }
 }
+const serviceType = ['installation', 'cleaning', 'moving', 'checking', 'problem']
 
 export default class App extends Component {
   constructor (props) {
@@ -31,8 +33,9 @@ export default class App extends Component {
   }
 
   _renderBody = () => {
-    if (this.state.active == 'service') return <Service />
+    if (this.state.active == 'service') return <Service _handleChangePage={(title, active) => this._handleChangePage(title, active)} />
     else if (this.state.active == 'joblist') return <JobList />
+    else if (serviceType.includes(this.state.active)) return <RequestJob service={this.state.active} />
     else return <Text>Error Page 404</Text>
   }
 
@@ -45,7 +48,9 @@ export default class App extends Component {
             {this._renderBody()}
           </View>
           <View style={{ flex: 0.1 }}>
-            <Footer active={this.state.active} _handleChangePage={this._handleChangePage} />
+            {this.state.active == 'service' || this.state.active == 'joblist'
+              ? <Footer active={this.state.active} _handleChangePage={this._handleChangePage} />
+              : <Text>footer</Text>}
           </View>
         </View>
       </ThemeProvider>

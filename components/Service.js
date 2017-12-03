@@ -4,35 +4,31 @@ import Footer from './Footer'
 import ServiceItem from './ServiceItem'
 
 export default class Service extends Component {
-  _handlePress = service => {
-    console.log('service=', service)
-  }
-
   render () {
     return (
       <View style={styles.viewContainer}>
         <View style={styles.rowContainer}>
 
           <View style={styles.rowElement}>
-            <ServiceItem service='installation' _handlePress={() => this._handlePress('installation')} />
+            <ServiceItem service='installation' _handlePress={() => this.props._handleChangePage('Request a Job', 'installation')} />
           </View>
           <View style={styles.rowElement}>
-            <ServiceItem service='cleaning' _handlePress={() => this._handlePress('cleaning')} />
-          </View>
-        </View>
-
-        <View style={styles.rowContainer}>
-          <View style={styles.rowElement}>
-            <ServiceItem service='moving' _handlePress={() => this._handlePress('moving')} />
-          </View>
-          <View style={styles.rowElement}>
-            <ServiceItem service='checking' _handlePress={() => this._handlePress('checking')} />
+            <ServiceItem service='cleaning' _handlePress={() => this.props._handleChangePage('Request a Job', 'cleaning')} />
           </View>
         </View>
 
         <View style={styles.rowContainer}>
           <View style={styles.rowElement}>
-            <ServiceItem service='problem' _handlePress={() => this._handlePress('problem')} />
+            <ServiceItem service='moving' _handlePress={() => this.props._handleChangePage('Request a Job', 'moving')} />
+          </View>
+          <View style={styles.rowElement}>
+            <ServiceItem service='checking' _handlePress={() => this.props._handleChangePage('Request a Job', 'checking')} />
+          </View>
+        </View>
+
+        <View style={styles.rowContainer}>
+          <View style={styles.rowElement}>
+            <ServiceItem service='problem' _handlePress={() => this.props._handleChangePage('Request a Job', 'problem')} />
           </View>
           <View style={styles.rowElement} />
 
