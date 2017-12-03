@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native'
+import StepBar from './StepBar'
 import Step1 from './Step1.request'
 import Step1Problem from './Step1Problem.request'
 import Step2 from './Step2.request'
@@ -29,8 +30,11 @@ export default class RequestJob extends Component {
 
   render () {
     return (
-      <View>
-        {this._renderBody()}
+      <View style={{ flex: 1 }}>
+        <StepBar step={this.props.step} />
+        <View style={{ flex: 1 }}>
+          {this._renderBody()}
+        </View>
       </View>
     )
   }
