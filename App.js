@@ -49,9 +49,7 @@ export default class App extends Component {
             {this._renderBody()}
           </View>
           <View style={{ flex: 0.1 }}>
-            {this.state.active == 'service' || this.state.active == 'joblist'
-              ? <Footer active={this.state.active} _handleChangePage={this._handleChangePage} />
-              : <Text>footer</Text>}
+            <Footer active={this.state.active} _handleChangePage={this._handleChangePage} />
           </View>
         </View>
       </ThemeProvider>
