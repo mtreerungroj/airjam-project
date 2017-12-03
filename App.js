@@ -44,7 +44,7 @@ export default class App extends Component {
     if (this.state.active == 'service') return <Service _handleChangePage={(title, active, step) => this._handleChangePage(title, active, step)} />
     else if (this.state.active == 'joblist') return <JobList />
     else if (serviceType.includes(this.state.active)) {
-      return <RequestJob service={this.state.active} />
+      return <RequestJob service={this.state.active} step={this.state.step} />
     } else return <Text>Error Page 404</Text>
   }
 
