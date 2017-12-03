@@ -4,12 +4,20 @@ import { COLOR } from 'react-native-material-ui'
 import { BottomNavigation } from 'react-native-material-ui'
 import { Button } from 'react-native-material-ui'
 
+const activeList = ['service', 'joblist']
+
 export default class Footer extends Component {
   constructor (props) {
     super(props)
   }
+
+  _handleChangeStep = () => {
+    if (this.props.step == 4) this.props._handleChangeStep(0)
+    else this.props._handleChangeStep(this.props.step + 1)
+  }
+
   render () {
-    return this.props.active == 'service' || this.props.active == 'joblist'
+    return activeList.includes(this.props.active)
       ? <BottomNavigation active={this.props.active} hidden={false}>
         <BottomNavigation.Action key='service' icon='today' label='Service' onPress={() => this.props._handleChangePage('AirJam', 'service')} />
         <BottomNavigation.Action
@@ -20,7 +28,7 @@ export default class Footer extends Component {
           />
         <BottomNavigation.Action key='setting' icon='settings' label='Setting' />
       </BottomNavigation>
-      : <Button style={styles.nextButton} primary text='Next' />
+      : <Button primary text={this.props.step == 4 ? 'Finish' : 'Next'} onPress={this._handleChangeStep} style={styles.nextButton} />
   }
 }
 
