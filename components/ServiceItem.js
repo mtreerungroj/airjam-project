@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import { Card } from 'react-native-material-ui'
 
 export default class ServiceItem extends Component {
   _handlePress = () => {
@@ -26,9 +25,8 @@ export default class ServiceItem extends Component {
 
   render () {
     return (
-      <TouchableOpacity onPress={this._handlePress}>
+      <TouchableOpacity style={styles.container} onPress={this._handlePress}>
         {this._renderImage(this.props.service)}
-        {/* <Image style={styles.imageElement} source={require('../assets/image/s-installation.png')} /> */}
       </TouchableOpacity>
     )
   }
@@ -38,5 +36,8 @@ const styles = {
   imageElement: {
     height: '100%',
     width: 'auto'
+  },
+  container: {
+    margin: 10
   }
 }

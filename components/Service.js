@@ -46,7 +46,9 @@ const styles = {
   rowContainer: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10
   },
   rowElement: {
     flex: 0.5
