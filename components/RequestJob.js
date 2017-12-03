@@ -13,18 +13,22 @@ export default class RequestJob extends Component {
     this.state = {}
   }
 
+  _handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   _renderBody = () => {
     switch (this.props.step) {
       case 1: {
-        if (this.props.service == 'problem') return <Step1Problem />
-        else return <Step1 />
+        if (this.props.service == 'problem') return <Step1Problem _handleChange={this._handleChange} />
+        else return <Step1 _handleChange={this._handleChange} />
       }
       case 2:
-        return <Step2 />
+        return <Step2 _handleChange={this._handleChange} />
       case 3:
-        return <Step3 />
+        return <Step3 _handleChange={this._handleChange} />
       case 4:
-        return <Step4 />
+        return <Step4 _handleChange={this._handleChange} />
     }
   }
 
