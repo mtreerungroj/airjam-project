@@ -35,15 +35,16 @@ export default class App extends Component {
   _renderBody = () => {
     if (this.state.active == 'service') return <Service _handleChangePage={(title, active) => this._handleChangePage(title, active)} />
     else if (this.state.active == 'joblist') return <JobList />
-    else if (serviceType.includes(this.state.active)) return <RequestJob service={this.state.active} />
-    else return <Text>Error Page 404</Text>
+    else if (serviceType.includes(this.state.active)) {
+      return <RequestJob service={this.state.active} />
+    } else return <Text>Error Page 404</Text>
   }
 
   render () {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={{ flex: 1 }}>
-          <Header title={this.state.title} />
+          <Header title={this.state.title} _handleBack={() => this._handleChangePage('AirJam', 'service')} />
           <View style={{ flex: 0.9 }}>
             {this._renderBody()}
           </View>
