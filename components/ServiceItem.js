@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 
 export default class ServiceItem extends Component {
-  _handlePress = () => {
-    console.log('press')
-  }
-
   _renderImage = service => {
     switch (service) {
       case 'installation':
@@ -25,7 +21,7 @@ export default class ServiceItem extends Component {
 
   render () {
     return (
-      <TouchableOpacity style={styles.container} onPress={this._handlePress}>
+      <TouchableOpacity style={styles.container} onPress={this.props._handlePress}>
         {this._renderImage(this.props.service)}
       </TouchableOpacity>
     )
