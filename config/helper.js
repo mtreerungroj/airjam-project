@@ -23,4 +23,10 @@ const getJobItems = (email, password) => {
   })
 }
 
-export { getJobItems }
+const getCurrentDate = () => {
+  let date = new Date()
+  date = date.toISOString('YYYY-MM-DD').substring(0, 10)
+  return { date, isLoading: false }
+}
+
+export { getJobItems, getCurrentDate }
