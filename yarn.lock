@@ -3523,6 +3523,12 @@ react-native-material-ui@^1.14.0:
     prop-types "^15.5.10"
     react-native-material-design-styles "^0.2.6"
 
+react-native-step-indicator@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-step-indicator/-/react-native-step-indicator-0.0.7.tgz#e9111b5f7f89bd00f1ec5d8af7beb868f4b5b706"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-vector-icons@4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.3.0.tgz#49eab845fbcde6354cb3dbcb62c1abd1f6abc866"
