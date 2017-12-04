@@ -27,8 +27,6 @@ const getCurrentDate = () => {
   let datetime = new Date()
   let date = datetime.toISOString('YYYY-MM-DD').substring(0, 10)
   let time = datetime.getHours() + ':' + datetime.getMinutes()
-  console.log('date=', date)
-  console.log('time=', time)
   return { date, time }
 }
 
