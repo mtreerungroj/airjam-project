@@ -6,6 +6,7 @@ import Step1Problem from './Step1Problem.request'
 import Step2 from './Step2.request'
 import Step3 from './Step3.request'
 import Step4 from './Step4.request'
+import { getCurrentDate } from '../config/helper'
 
 export default class RequestJob extends Component {
   constructor (props) {
@@ -13,8 +14,14 @@ export default class RequestJob extends Component {
     this.state = {}
   }
 
-  _handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  componentDidMount () {
+    const date = getCurrentDate()
+    this.setState({ date })
+  }
+
+  _handleChange = (name, value) => {
+    this.setState({ [name]: value })
+    console.log(this.state)
   }
 
   _renderBody = () => {
@@ -25,8 +32,9 @@ export default class RequestJob extends Component {
       }
       case 2:
         return <Step2 _handleChange={this._handleChange} />
-      case 3:
-        return <Step3 _handleChange={this._handleChange} />
+      case 3: {
+        return <Step3 _handleChange={this._handleChange} date={this.state.date} />
+      }
       case 4:
         return <Step4 _handleChange={this._handleChange} />
     }
