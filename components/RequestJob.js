@@ -15,8 +15,7 @@ export default class RequestJob extends Component {
   }
 
   componentDidMount () {
-    const date = getCurrentDate()
-    this.setState({ date })
+    this.setState(getCurrentDate())
   }
 
   _handleChange = (name, value) => {
