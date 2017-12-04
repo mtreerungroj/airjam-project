@@ -16,7 +16,7 @@ export default class Step3 extends Component {
           keyboardType='numeric'
           placeholder='กรอกเบอร์ติดต่อของคุณ'
           maxLength={10}
-          // onEndEditing={() => this.props._handleChange('date', date)}
+          onChangeText={contact => this.props._handleChange('contact', contact)}
           style={styles.datePicker}
         />
         <Text style={styles.text}>วันที่ต้องการใช้บริการ</Text>
