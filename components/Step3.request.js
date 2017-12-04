@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, TextInput } from 'react-native'
+import { Platform, StyleSheet, Text, View, Image } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 
 export default class Step3 extends Component {
@@ -22,6 +22,7 @@ export default class Step3 extends Component {
           date={this.props.time}
           format='HH:mm'
           minuteInterval={10}
+          iconComponent={<Image style={styles.imageIcon} source={require('../assets/icon/time.png')} />}
           style={styles.datePicker}
           customStyles={styles.customStyles}
           onDateChange={time => this.props._handleChange('time', time)}
@@ -44,6 +45,14 @@ const styles = {
   },
   datePicker: {
     width: 200
+  },
+  imageIcon: {
+    position: 'absolute',
+    left: 0,
+    top: 4,
+    marginLeft: 5,
+    height: 32,
+    width: 32
   },
   customStyles: {
     dateIcon: {
