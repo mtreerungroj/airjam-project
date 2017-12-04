@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'
-import { BottomNavigation } from 'react-native-material-ui'
-import { COLOR } from 'react-native-material-ui'
+import StepIndicator from 'react-native-step-indicator'
+
+const labels = ['Detail', 'Address', 'Available Date', 'Payment']
 
 export default class StepBar extends Component {
   _handleChangeStep = step => {
@@ -10,20 +11,41 @@ export default class StepBar extends Component {
 
   render () {
     return (
-      <BottomNavigation>
-        <BottomNavigation.Action key='step1' icon='comment' onPress={() => this._handleChangeStep(1)} style={getBarStyle(1, this.props.step)} />
-        <BottomNavigation.Action key='step2' icon='location-on' onPress={() => this._handleChangeStep(2)} style={getBarStyle(2, this.props.step)} />
-        <BottomNavigation.Action key='step3' icon='event-available' onPress={() => this._handleChangeStep(3)} style={getBarStyle(3, this.props.step)} />
-        <BottomNavigation.Action key='step4' icon='credit-card' onPress={() => this._handleChangeStep(4)} style={getBarStyle(4, this.props.step)} />
-      </BottomNavigation>
+      <View style={{ marginTop: 15 }}>
+        <StepIndicator
+          stepCount={4}
+          customStyles={styles.customStyles}
+          currentPosition={this.props.step - 1}
+          labels={labels}
+          onPress={step => this._handleChangeStep(step + 1)}
+        />
+      </View>
     )
   }
 }
 
-const getBarStyle = (self, step) => ({
-  container: {
-    backgroundColor: step >= self ? COLOR.orange500 : COLOR.white,
-    borderColor: 'white',
-    borderRightWidth: self == 4 ? 0 : 1
+const styles = {
+  customStyles: {
+    stepIndicatorSize: 25,
+    currentStepIndicatorSize: 30,
+    separatorStrokeWidth: 2,
+    currentStepStrokeWidth: 3,
+    stepStrokeCurrentColor: '#fe7013',
+    stepStrokeWidth: 3,
+    stepStrokeFinishedColor: '#fe7013',
+    stepStrokeUnFinishedColor: '#aaaaaa',
+    separatorFinishedColor: '#fe7013',
+    separatorUnFinishedColor: '#aaaaaa',
+    stepIndicatorFinishedColor: '#fe7013',
+    stepIndicatorUnFinishedColor: '#ffffff',
+    stepIndicatorCurrentColor: '#ffffff',
+    stepIndicatorLabelFontSize: 13,
+    currentStepIndicatorLabelFontSize: 13,
+    stepIndicatorLabelCurrentColor: '#fe7013',
+    stepIndicatorLabelFinishedColor: '#ffffff',
+    stepIndicatorLabelUnFinishedColor: '#aaaaaa',
+    labelColor: '#999999',
+    labelSize: 13,
+    currentStepLabelColor: '#fe7013'
   }
-})
+}
