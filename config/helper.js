@@ -24,9 +24,12 @@ const getJobItems = (email, password) => {
 }
 
 const getCurrentDate = () => {
-  let date = new Date()
-  date = date.toISOString('YYYY-MM-DD').substring(0, 10)
-  return date
+  let datetime = new Date()
+  let date = datetime.toISOString('YYYY-MM-DD').substring(0, 10)
+  let time = datetime.getHours() + ':' + datetime.getMinutes()
+  console.log('date=', date)
+  console.log('time=', time)
+  return { date, time }
 }
 
 export { getJobItems, getCurrentDate }
