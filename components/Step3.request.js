@@ -3,6 +3,10 @@ import { Platform, StyleSheet, Text, View, Image } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 
 export default class Step3 extends Component {
+  componentDidMount () {
+    if (this.props.date == undefined || this.props.time == undefined) this.props._setDateTime()
+  }
+
   render () {
     return (
       <View style={styles.viewContainer}>

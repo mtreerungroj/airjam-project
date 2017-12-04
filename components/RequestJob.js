@@ -14,7 +14,9 @@ export default class RequestJob extends Component {
     this.state = {}
   }
 
-  componentDidMount () {
+  componentDidMount () {}
+
+  _setDateTime = () => {
     this.setState(getCurrentDate())
   }
 
@@ -32,7 +34,7 @@ export default class RequestJob extends Component {
       case 2:
         return <Step2 _handleChange={this._handleChange} />
       case 3: {
-        return <Step3 _handleChange={this._handleChange} date={this.state.date} />
+        return <Step3 _handleChange={this._handleChange} _setDateTime={this._setDateTime} date={this.state.date} time={this.state.time} />
       }
       case 4:
         return <Step4 _handleChange={this._handleChange} />
@@ -40,6 +42,7 @@ export default class RequestJob extends Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <View style={{ flex: 1 }}>
         <StepBar step={this.props.step} _handleChangeStep={this.props._handleChangeStep} />
