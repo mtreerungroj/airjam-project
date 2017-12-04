@@ -8,16 +8,25 @@ export default class Step3 extends Component {
       <View style={styles.viewContainer}>
         <Text style={styles.text}>วันที่ต้องการใช้บริการ</Text>
         <DatePicker
-          style={styles.datePicker}
-          date={this.props.date}
           mode='date'
+          date={this.props.date}
           format='YYYY-MM-DD'
           minDate={this.props.date}
-          confirmBtnText='Confirm'
-          cancelBtnText='Cancel'
+          style={styles.datePicker}
           customStyles={styles.customStyles}
           onDateChange={date => this.props._handleChange('date', date)}
         />
+        <Text style={styles.text}>เวลาที่สะดวก</Text>
+        <DatePicker
+          mode='time'
+          date={this.props.time}
+          format='HH:mm'
+          minuteInterval={10}
+          style={styles.datePicker}
+          customStyles={styles.customStyles}
+          onDateChange={time => this.props._handleChange('time', time)}
+        />
+
       </View>
     )
   }
@@ -31,7 +40,7 @@ const styles = {
   },
   text: {
     marginBottom: 10,
-    marginTop: 10
+    marginTop: 20
   },
   datePicker: {
     width: 200
@@ -41,10 +50,10 @@ const styles = {
       position: 'absolute',
       left: 0,
       top: 4,
-      marginLeft: 0
+      marginLeft: 5
     },
-    dateInput: {
-      marginLeft: 36
+    dateText: {
+      marginLeft: 30
     }
   }
 }
