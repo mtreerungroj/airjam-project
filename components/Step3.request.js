@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, Image } from 'react-native'
+import { Platform, StyleSheet, Text, View, TextInput, Image, Keyboard } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 
 export default class Step3 extends Component {
@@ -10,6 +10,15 @@ export default class Step3 extends Component {
   render () {
     return (
       <View style={styles.viewContainer}>
+        <Text style={styles.text}>เบอร์ติดต่อ</Text>
+        <TextInput
+          autoFocus
+          keyboardType='numeric'
+          placeholder='กรอกเบอร์ติดต่อของคุณ'
+          maxLength={10}
+          // onEndEditing={() => this.props._handleChange('date', date)}
+          style={styles.datePicker}
+        />
         <Text style={styles.text}>วันที่ต้องการใช้บริการ</Text>
         <DatePicker
           mode='date'
@@ -48,7 +57,8 @@ const styles = {
     marginTop: 20
   },
   datePicker: {
-    width: 200
+    width: 200,
+    marginBottom: 10
   },
   imageIcon: {
     position: 'absolute',
