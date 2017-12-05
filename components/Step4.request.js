@@ -52,33 +52,37 @@ export default class Step4 extends Component {
           <View style={styles.buttonUp}>
             <View style={styles.buttonUpIn}>
               <TouchableOpacity onPress={() => this.onButtonPress(0)} style={this.state.styleIndex0 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
-                <Image style={{ width: 50, height: 50 }} source={require('../assets/payment/paypal.png')} />
+                <Image style={styles.imageElement} source={require('../assets/payment/paypal.png')} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.onButtonPress(1)} style={this.state.styleIndex1 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
-                <Image style={{ width: 50, height: 50 }} source={require('../assets/payment/visa.png')} />
+                <Image style={styles.imageElement} source={require('../assets/payment/visa.png')} />
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.onButtonPress(2)} style={this.state.styleIndex2 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
-                <Image style={{ width: 50, height: 50 }} source={require('../assets/payment/master-card.png')} />
+                <Image style={styles.imageElement} source={require('../assets/payment/master-card.png')} />
               </TouchableOpacity>
             </View>
             <View style={styles.buttonUpIn}>
               <TouchableOpacity onPress={() => this.onButtonPress(3)} style={this.state.styleIndex3 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
-                <Image style={{ width: 50, height: 50 }} source={require('../assets/payment/bitcoin.png')} />
+                <Image style={styles.imageElement} source={require('../assets/payment/bitcoin.png')} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.onButtonPress(4)} style={this.state.styleIndex4 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
-                <Image style={{ width: 50, height: 50 }} source={require('../assets/payment/citibank.png')} />
+                <Image style={styles.imageElement} source={require('../assets/payment/citibank.png')} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.onButtonPress(5)} style={this.state.styleIndex5 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
-                <Image style={{ width: 50, height: 50 }} source={require('../assets/payment/american-express.png')} />
+                <Image style={styles.imageElement} source={require('../assets/payment/american-express.png')} />
 
               </TouchableOpacity>
             </View>
           </View>
 
-          <TouchableOpacity onPress={() => this.onButtonPress(6)} style={this.state.styleIndex6 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
-            <Image style={{ width: 50, height: 50 }} source={require('../assets/payment/cash.png')} />
-          </TouchableOpacity>
+          <View style={styles.buttonContainer}>
+            <View style={styles.buttonUp}>
+              <TouchableOpacity onPress={() => this.onButtonPress(6)} style={this.state.styleIndex6 === 0 ? styles.buttonStyle : styles.buttonStyleClicked}>
+                <Image style={styles.imageElement} source={require('../assets/payment/cash.png')} />
+              </TouchableOpacity>
+            </View>
+          </View>
 
         </View>
       </View>
@@ -96,18 +100,26 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     fontSize: 18,
-    color: COLOR.black,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    color: COLOR.black
+  },
+  imageElement: {
+    width: 100,
+    height: 100
   },
   buttonContainer: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    borderRadius: 10
   },
   buttonUp: {
     flex: 1,
     flexDirection: 'column',
-    borderColor: '#757575',
-    borderWidth: 2
+    marginBottom: 10,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: COLOR.grey600,
+    backgroundColor: COLOR.grey300
   },
   buttonUpIn: {
     flex: 1,
@@ -115,16 +127,16 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     flex: 1,
-    backgroundColor: '#E0E0E0',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center'
   },
   buttonStyleClicked: {
     flex: 1,
-    backgroundColor: '#FF9800',
+    borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: COLOR.orange500
   }
 })
