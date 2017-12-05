@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, Image, Button } from 'react-native'
+import { COLOR } from 'react-native-material-ui'
 // import t from 'tcomb-form-native'
 
 // var Form = t.form.Form;
@@ -33,20 +34,21 @@ export default class Step1 extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.head}>จำนวนแอร์(เครื่อง)</Text>
 
+        <Text style={styles.text}>จำนวนแอร์(เครื่อง)</Text>
         <View style={styles.buttonContainer}>
           <Button onPress={_onPressButtonMinus} title='-' />
-          <Text style={styles.head}>{this.state.numberAir}</Text>
+          <Text style={styles.text}>{this.state.numberAir}</Text>
           <Button onPress={_onPressButtonPlus} title='+' />
-
         </View>
-        <Text style={styles.head}>เลือกสถานที่</Text>
+
+        <Text style={styles.text}>เลือกสถานที่</Text>
         {/* <Form
           ref="form"
           type={House}
           options={options}
         /> */}
+
       </View>
     )
   }
@@ -54,15 +56,16 @@ export default class Step1 extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
     flex: 1,
     flexDirection: 'column',
-    borderColor: '#ffffff',
-    borderWidth: 5
+    margin: 10
   },
-  head: {
-    fontSize: 20,
-    alignSelf: 'center'
+  text: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 18,
+    alignSelf: 'center',
+    color: COLOR.black
   },
   image: {
     width: 80
