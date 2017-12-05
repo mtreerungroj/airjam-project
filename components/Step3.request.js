@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, TextInput, Image, Keyboard } from 'react-native'
 import DatePicker from 'react-native-datepicker'
+import { COLOR } from 'react-native-material-ui'
 
 export default class Step3 extends Component {
   componentDidMount () {
@@ -54,7 +55,9 @@ const styles = {
   },
   text: {
     marginBottom: 10,
-    marginTop: 20
+    marginTop: 10,
+    color: COLOR.black,
+    fontSize: 18
   },
   datePicker: {
     width: 200,
