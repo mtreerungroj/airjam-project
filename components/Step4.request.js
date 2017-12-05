@@ -6,7 +6,7 @@ export default class Step4 extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      activeBotton: ''
+      activeBotton: this.props.payment
     }
   }
 

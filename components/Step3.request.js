@@ -13,9 +13,10 @@ export default class Step3 extends Component {
       <View style={styles.viewContainer}>
         <Text style={styles.text}>เบอร์ติดต่อ</Text>
         <TextInput
-          autoFocus
+          autoFocus={this.props.contact == undefined}
           keyboardType='numeric'
           placeholder='กรอกเบอร์ติดต่อของคุณ'
+          value={this.props.contact}
           maxLength={10}
           onChangeText={contact => this.props._handleChange('contact', contact)}
           style={styles.datePicker}

@@ -34,10 +34,18 @@ export default class RequestJob extends Component {
       case 2:
         return <Step2 _handleChange={this._handleChange} />
       case 3: {
-        return <Step3 _handleChange={this._handleChange} _setDateTime={this._setDateTime} date={this.state.date} time={this.state.time} />
+        return (
+          <Step3
+            _handleChange={this._handleChange}
+            _setDateTime={this._setDateTime}
+            contact={this.state.contact}
+            date={this.state.date}
+            time={this.state.time}
+          />
+        )
       }
       case 4:
-        return <Step4 _handleChange={this._handleChange} />
+        return <Step4 _handleChange={this._handleChange} payment={this.state.payment} />
     }
   }
 
