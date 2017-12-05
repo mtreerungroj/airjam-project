@@ -12,6 +12,7 @@ export default class Step4 extends Component {
 
   onButtonPress = activeBotton => {
     this.setState({ activeBotton })
+    this.props._handleChange('payment', activeBotton)
   }
 
   render () {
