@@ -5,16 +5,13 @@ import AnimatedHideView from 'react-native-animated-hide-view'
 import t from 'tcomb-form-native'
 
 var Form = t.form.Form
-var House = t.enums({
-  home: 'บ้านเดี่ยว',
-  condo: 'คอนโด',
-  build: 'ตึก'
+var placeTypes = t.enums({
+  บ้านเดี่ยว: 'บ้านเดี่ยว',
+  คอนโดมีเนียม: 'คอนโดมีเนียม',
+  'ตึก/สำนักงาน': 'ตึก/สำนักงาน'
 })
 
 var options = {}
-
-// var buttons = ['แอร์ไม่เย็น', 'แอร์มีน้ำหยด', 'แอร์เปิดไม่ติด', 'แอร์มีเสียงดัง', 'compressor ไม่ทำงาน', 'อื่น']
-// var buttonClick = []
 
 export default class Step1Problem extends Component {
   constructor (props) {
@@ -26,19 +23,18 @@ export default class Step1Problem extends Component {
       problem4: false,
       problem5: false,
       problem6: false,
-      isVisible: false,
-      text: 'ปัญหาอื่นที่ต้องการแก้ไข'
+      place: 'บ้านเดี่ยว'
     }
   }
 
-  toggle () {
-    this.setState({
-      isVisible: !this.state.isVisibles
-    })
+  onButtonPress = problem => {
+    this.setState({ [problem]: !this.state[problem] })
   }
 
-  onButtonPress (problem) {
-    this.setState({ [problem]: !this.state[problem] })
+  _onSelect = () => {
+    const value = this.refs.place.getValue()
+    console.log('value=', value)
+    this.setState({ place: value })
   }
 
   render () {
@@ -67,8 +63,8 @@ export default class Step1Problem extends Component {
         </View>
 
         <Text style={styles.text}>เลือกสถานที่</Text>
-        <View style={styles.buttonUp}>
-          <Form ref='form' type={House} options={options} />
+        <View style={styles.buttonDown}>
+          <Form ref='place' style={{ backgroundColor: 'red' }} type={placeTypes} options={options} value={this.state.place} onChange={this._onSelect} />
         </View>
       </View>
     )
@@ -95,6 +91,12 @@ const styles = StyleSheet.create({
   buttonUp: {
     flexDirection: 'column',
     marginBottom: 10
+  },
+  buttonDown: {
+    flexDirection: 'column',
+    marginBottom: 10,
+    width: '50%',
+    alignSelf: 'center'
   },
   buttonStyle: {
     flex: 1,
