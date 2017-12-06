@@ -19,7 +19,7 @@ export default class Step3 extends Component {
           value={this.props.contact}
           maxLength={10}
           onChangeText={contact => this.props._handleChange('contact', contact)}
-          style={styles.datePicker}
+          style={styles.elementContainer}
         />
         <Text style={styles.text}>วันที่ต้องการใช้บริการ</Text>
         <DatePicker
@@ -27,7 +27,7 @@ export default class Step3 extends Component {
           date={this.props.date}
           format='YYYY-MM-DD'
           minDate={this.props.date}
-          style={styles.datePicker}
+          style={styles.elementContainer}
           customStyles={styles.customStyles}
           onDateChange={date => this.props._handleChange('date', date)}
         />
@@ -38,7 +38,7 @@ export default class Step3 extends Component {
           format='HH:mm'
           minuteInterval={10}
           iconComponent={<Image style={styles.imageIcon} source={require('../assets/icon/time.png')} />}
-          style={styles.datePicker}
+          style={styles.elementContainer}
           customStyles={styles.customStyles}
           onDateChange={time => this.props._handleChange('time', time)}
         />
@@ -60,8 +60,8 @@ const styles = {
     color: COLOR.black,
     fontSize: 18
   },
-  datePicker: {
-    width: 200,
+  elementContainer: {
+    width: '80%',
     marginBottom: 10
   },
   imageIcon: {
