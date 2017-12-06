@@ -65,7 +65,7 @@ export default class JobList extends Component {
               key={idx.toString()}
               style={getStyle(item.isComplete)}
               centerElement={{
-                primaryText: item.title,
+                primaryText: item.service,
                 secondaryText: 'วันที่ ' + item.date,
                 tertiaryText: item.isComplete ? 'สถานะ: ดำเนินการเสร็จสิ้น' : 'สถานะ: กำลังดำเนินการ'
               }}
