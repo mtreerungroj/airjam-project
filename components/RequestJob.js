@@ -17,11 +17,11 @@ export const addNewJobToDatabase = () => {
     postJobItem(dataStore)
       .then(res => {
         ToastAndroid.show(res, ToastAndroid.SHORT)
-        resolve({ title: 'Job List', active: 'joblist' })
+        resolve({ title: 'Job List', active: 'joblist', isShowLoading: false })
       })
       .catch(res => {
         ToastAndroid.show(res, ToastAndroid.SHORT)
-        resolve({ title: 'AirJam', active: 'airjam' })
+        resolve({ title: 'AirJam', active: 'airjam', isShowLoading: false })
       })
   })
 }

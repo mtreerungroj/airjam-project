@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Service from './components/Service'
 import JobList from './components/JobList'
 import RequestJob, { addNewJobToDatabase } from './components/RequestJob'
+import { Bubbles } from 'react-native-loader'
 
 const uiTheme = {
   palette: {
@@ -25,7 +26,8 @@ export default class App extends Component {
     this.state = {
       title: 'AirJam',
       active: 'service',
-      step: 0
+      step: 0,
+      isShowLoading: false
     }
   }
 
@@ -34,7 +36,10 @@ export default class App extends Component {
   }
 
   _handleChangeStep = step => {
-    step == 0 && addNewJobToDatabase().then(res => this.setState(res)).catch(res => this.setState(res))
+    if (step == 0) {
+      this.setState({ isShowLoading: true })
+      addNewJobToDatabase().then(res => this.setState(res)).catch(res => this.setState(res))
+    }
     this.setState({ step })
   }
 
@@ -52,7 +57,11 @@ export default class App extends Component {
         <View style={{ flex: 1 }}>
           <Header title={this.state.title} _handleBack={() => this._handleChangePage('AirJam', 'service')} />
           <View style={{ flex: 0.9 }}>
-            {this._renderBody()}
+            {!this.state.isShowLoading
+              ? this._renderBody()
+              : <View style={styles.bubbleContainer}>
+                <Bubbles size={10} color={COLOR.cyan500} />
+              </View>}
           </View>
           <View style={{ flex: 0.1 }}>
             <Footer active={this.state.active} step={this.state.step} _handleChangePage={this._handleChangePage} _handleChangeStep={this._handleChangeStep} />
@@ -60,5 +69,13 @@ export default class App extends Component {
         </View>
       </ThemeProvider>
     )
+  }
+}
+
+const styles = {
+  bubbleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 }
