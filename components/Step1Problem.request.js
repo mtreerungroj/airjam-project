@@ -26,8 +26,14 @@ export default class Step1Problem extends Component {
     }
   }
 
-  onButtonPress = problem => {
-    this.setState({ [problem]: !this.state[problem] })
+  componentDidMount () {
+    const problems = this.props.problems
+    this.setState(problems)
+  }
+
+  onButtonPress = async problem => {
+    await this.setState({ [problem]: !this.state[problem] })
+    this.props._handleChange('problems', this.state)
   }
 
   _onSelect = () => {

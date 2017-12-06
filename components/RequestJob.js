@@ -28,11 +28,29 @@ export const addNewJobToDatabase = () => {
 export default class RequestJob extends Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isLoading: true
+    }
   }
 
   componentDidMount () {
     this._setInitialMaps()
+    this._setInitialValue()
+  }
+
+  _setInitialValue = () => {
+    const place = 'บ้านเดี่ยว'
+    const problems = {
+      problem1: false,
+      problem2: false,
+      problem3: false,
+      problem4: false,
+      problem5: false,
+      problem6: false
+    }
+    this.setState({ place, problems, isLoading: false })
+    dataStore.place = place
+    dataStore.problems = problems
   }
 
   _setDateTime = () => {
@@ -55,17 +73,14 @@ export default class RequestJob extends Component {
   }
 
   _handleChange = (name, value) => {
-    console.log('valueeeeeeeeeee', value)
     this.setState({ [name]: value })
     dataStore[name] = value
-    console.log(this.state)
-    console.log('datastore:', dataStore)
   }
 
   _renderBody = () => {
     switch (this.props.step) {
       case 1: {
-        if (this.props.service == 'problem') return <Step1Problem _handleChange={this._handleChange} />
+        if (this.props.service == 'problem') return <Step1Problem _handleChange={this._handleChange} place={this.state.place} problems={this.state.problems} />
         else return <Step1 _handleChange={this._handleChange} />
       }
       case 2:
@@ -87,12 +102,11 @@ export default class RequestJob extends Component {
   }
 
   render () {
-    console.log(this.state)
     return (
       <View style={{ flex: 1 }}>
         <StepBar step={this.props.step} _handleChangeStep={this.props._handleChangeStep} />
         <View style={{ flex: 1 }}>
-          {this._renderBody()}
+          {this.state.isLoading ? <Text>Loading</Text> : this._renderBody()}
         </View>
       </View>
     )
