@@ -30,4 +30,10 @@ const getCurrentDate = () => {
   return { date, time }
 }
 
-export { getJobItems, getCurrentDate }
+const postJobItem = dataStore => {
+  return new Promise((resolve, reject) => {
+    firebase.database().ref('jobs').push(dataStore).then(() => resolve('บันทึกข้อมูลสำเร็จ')).catch(() => reject('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง'))
+  })
+}
+
+export { getJobItems, getCurrentDate, postJobItem }

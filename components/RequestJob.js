@@ -6,14 +6,13 @@ import Step1Problem from './Step1Problem.request'
 import Step2 from './Step2.request'
 import Step3 from './Step3.request'
 import Step4 from './Step4.request'
-import { getCurrentDate } from '../config/helper'
-import firebase from '../config/firebase'
+import { getCurrentDate, postJobItem } from '../config/helper'
 
 let dataStore = {}
 
 export const addNewJobToDatabase = () => {
   dataStore.createAt = new Date()
-  firebase.database().ref('jobs').push(dataStore)
+  postJobItem(dataStore).then(res => console.log(res)).catch(res => console.log(res))
 }
 
 export default class RequestJob extends Component {
