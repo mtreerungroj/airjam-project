@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View, ToastAndroid } from 'react-native'
 import { COLOR, ThemeProvider } from 'react-native-material-ui'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -34,10 +34,8 @@ export default class App extends Component {
   }
 
   _handleChangeStep = step => {
-    if (step == 0) {
-      addNewJobToDatabase()
-      this.setState({ step, title: 'Job List', active: 'joblist' })
-    } else this.setState({ step })
+    step == 0 && addNewJobToDatabase().then(res => this.setState(res)).catch(res => this.setState(res))
+    this.setState({ step })
   }
 
   _renderBody = () => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native'
+import { Platform, StyleSheet, Text, View, ScrollView, Image, ToastAndroid } from 'react-native'
 import StepBar from './StepBar'
 import Step1 from './Step1.request'
 import Step1Problem from './Step1Problem.request'
@@ -11,8 +11,18 @@ import { getCurrentDate, postJobItem } from '../config/helper'
 let dataStore = {}
 
 export const addNewJobToDatabase = () => {
-  dataStore.createAt = new Date()
-  postJobItem(dataStore).then(res => console.log(res)).catch(res => console.log(res))
+  return new Promise((resolve, reject) => {
+    dataStore.createAt = new Date()
+    postJobItem(dataStore)
+      .then(res => {
+        ToastAndroid.show(res, ToastAndroid.SHORT)
+        resolve({ title: 'Job List', active: 'joblist' })
+      })
+      .catch(res => {
+        ToastAndroid.show(res, ToastAndroid.SHORT)
+        resolve({ title: 'AirJam', active: 'airjam' })
+      })
+  })
 }
 
 export default class RequestJob extends Component {
