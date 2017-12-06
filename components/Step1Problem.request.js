@@ -79,7 +79,9 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     flexDirection: 'column',
-    margin: 10
+    margin: 10,
+    marginLeft: 20,
+    marginRight: 20
   },
   text: {
     marginBottom: 10,
