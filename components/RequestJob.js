@@ -7,6 +7,14 @@ import Step2 from './Step2.request'
 import Step3 from './Step3.request'
 import Step4 from './Step4.request'
 import { getCurrentDate } from '../config/helper'
+import firebase from '../config/firebase'
+
+let dataStore = {}
+
+export const addNewJobToDatabase = () => {
+  dataStore.createAt = new Date()
+  firebase.database().ref('jobs').push(dataStore)
+}
 
 export default class RequestJob extends Component {
   constructor (props) {
@@ -17,12 +25,17 @@ export default class RequestJob extends Component {
   componentDidMount () {}
 
   _setDateTime = () => {
-    this.setState(getCurrentDate())
+    let tmpDateTime = getCurrentDate()
+    this.setState(tmpDateTime)
+    dataStore.date = tmpDateTime.date
+    dataStore.time = tmpDateTime.time
   }
 
   _handleChange = (name, value) => {
     this.setState({ [name]: value })
+    dataStore[name] = value
     console.log(this.state)
+    console.log('datastore:', dataStore)
   }
 
   _renderBody = () => {

@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Service from './components/Service'
 import JobList from './components/JobList'
-import RequestJob from './components/RequestJob'
+import RequestJob, { addNewJobToDatabase } from './components/RequestJob'
 
 const uiTheme = {
   palette: {
@@ -35,7 +35,7 @@ export default class App extends Component {
 
   _handleChangeStep = step => {
     if (step == 0) {
-      // add new job list to firebase here
+      addNewJobToDatabase()
       this.setState({ step, title: 'Job List', active: 'joblist' })
     } else this.setState({ step })
   }
