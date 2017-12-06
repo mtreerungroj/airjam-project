@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, Image, Button, TouchableOpacity, TextInput } from 'react-native'
-import t from 'tcomb-form-native'
+import { COLOR } from 'react-native-material-ui'
 import AnimatedHideView from 'react-native-animated-hide-view'
+import t from 'tcomb-form-native'
 
 var Form = t.form.Form
 var House = t.enums({
@@ -43,29 +44,29 @@ export default class Step1Problem extends Component {
   render () {
     return (
       <View style={styles.viewContainer}>
-        <Text style={styles.head}>เลือกปัญหาแอร์</Text>
+        <Text style={styles.text}>เลือกปัญหาแอร์</Text>
         <View style={styles.buttonUp}>
           <TouchableOpacity onPress={() => this.onButtonPress('problem1')} style={!this.state.problem1 ? styles.buttonStyle : styles.buttonStyleClicked}>
-            <Text style={{ color: 'black', fontSize: 22 }}>แอร์ไม่เย็น</Text>
+            <Text style={styles.textButton}>แอร์ไม่เย็น</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.onButtonPress('problem2')} style={!this.state.problem2 ? styles.buttonStyle : styles.buttonStyleClicked}>
-            <Text style={{ color: 'black', fontSize: 22 }}>แอร์มีน้ำหยด</Text>
+            <Text style={styles.textButton}>แอร์มีน้ำหยด</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.onButtonPress('problem3')} style={!this.state.problem3 ? styles.buttonStyle : styles.buttonStyleClicked}>
-            <Text style={{ color: 'black', fontSize: 22 }}>แอร์เปิดไม่ติด</Text>
+            <Text style={styles.textButton}>แอร์เปิดไม่ติด</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.onButtonPress('problem4')} style={!this.state.problem4 ? styles.buttonStyle : styles.buttonStyleClicked}>
-            <Text style={{ color: 'black', fontSize: 22 }}>แอร์มีเสียงดัง</Text>
+            <Text style={styles.textButton}>แอร์มีเสียงดัง</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.onButtonPress('problem5')} style={!this.state.problem5 ? styles.buttonStyle : styles.buttonStyleClicked}>
-            <Text style={{ color: 'black', fontSize: 22 }}>compressor ไม่ทำงาน</Text>
+            <Text style={styles.textButton}>compressor ไม่ทำงาน</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.onButtonPress('problem6')} style={!this.state.problem6 ? styles.buttonStyle : styles.buttonStyleClicked}>
-            <Text style={{ color: 'black', fontSize: 22 }}>อื่นๆ</Text>
+            <Text style={styles.textButton}>อื่นๆ</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.head}>เลือกสถานที่</Text>
+        <Text style={styles.text}>เลือกสถานที่</Text>
         <View style={styles.buttonUp}>
           <Form ref='form' type={House} options={options} />
         </View>
@@ -80,27 +81,41 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     margin: 10
   },
-  head: {
-    fontSize: 20,
-    color: 'black',
-    alignSelf: 'center'
+  text: {
+    marginBottom: 10,
+    marginTop: 10,
+    color: COLOR.black,
+    alignSelf: 'center',
+    fontSize: 18
+  },
+  textButton: {
+    color: COLOR.black,
+    fontSize: 18
   },
   buttonUp: {
-    flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginBottom: 10
   },
   buttonStyle: {
     flex: 1,
-    backgroundColor: '#E0E0E0',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: COLOR.grey300,
+    borderColor: COLOR.grey500,
+    borderWidth: 1,
+    borderRadius: 10
   },
   buttonStyleClicked: {
     flex: 1,
-    backgroundColor: '#FF9800',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: COLOR.cyan200,
+    borderColor: COLOR.grey500,
+    borderWidth: 1,
+    borderRadius: 10
   }
 })
