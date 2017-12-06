@@ -22,8 +22,7 @@ export default class Step1Problem extends Component {
       problem3: false,
       problem4: false,
       problem5: false,
-      problem6: false,
-      place: 'บ้านเดี่ยว'
+      problem6: false
     }
   }
 
@@ -32,9 +31,8 @@ export default class Step1Problem extends Component {
   }
 
   _onSelect = () => {
-    const value = this.refs.place.getValue()
-    console.log('value=', value)
-    this.setState({ place: value })
+    const place = this.refs.place.getValue()
+    this.props._handleChange('place', place)
   }
 
   render () {
@@ -64,7 +62,7 @@ export default class Step1Problem extends Component {
 
         <Text style={styles.text}>เลือกสถานที่</Text>
         <View style={styles.buttonDown}>
-          <Form ref='place' style={{ backgroundColor: 'red' }} type={placeTypes} options={options} value={this.state.place} onChange={this._onSelect} />
+          <Form ref='place' style={{ backgroundColor: 'red' }} type={placeTypes} options={options} value={this.props.place} onChange={this._onSelect} />
         </View>
       </View>
     )
