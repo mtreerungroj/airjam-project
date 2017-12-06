@@ -162,7 +162,6 @@ dependencies {
         exclude group: 'com.google.android.gms', module: 'play-services-base'
         exclude group: 'com.google.android.gms', module: 'play-services-maps'
     }
-    compile 'com.google.android.gms:play-services-base:11.6.0'
     compile 'com.google.android.gms:play-services-maps:11.6.0'
 }
 
