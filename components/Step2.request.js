@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { AppRegistry, StyleSheet, View, Dimensions, Text, Button, TouchableOpacity, TextInput } from 'react-native'
+import { COLOR } from 'react-native-material-ui'
 import MapView from 'react-native-maps'
 // import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-// import AnimatedHideView from 'react-native-animated-hide-view';
+import AnimatedHideView from 'react-native-animated-hide-view'
 
 let { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -31,12 +32,12 @@ export default class Step2 extends Component {
     }
   }
 
-  // toggle = () => {
-  //   console.log('start')
-  //   this.setState({
-  //     isVisible: !this.state.visible
-  //   })
-  // }
+  toggle = () => {
+    console.log('start')
+    this.setState({
+      isVisible: !this.state.isVisible
+    })
+  }
 
   // componentDidMount () {
   //   navigator.geolocation.getCurrentPosition(
@@ -83,11 +84,11 @@ export default class Step2 extends Component {
 
   render () {
     return (
-      <View>
-        <Text style={styles.head}>สถานที่จากตำแหน่งปัจจุบัน</Text>
+      <View style={styles.viewContainer}>
+        <Text style={styles.text}>สถานที่จากตำแหน่งปัจจุบัน</Text>
         <MapView
           // provider={PROVIDER_GOOGLE}
-          style={styles.container}
+          style={styles.mapContainer}
           showsUserLocation
           region={this.state.region}
           onPress={this.onMapPress}
@@ -98,32 +99,32 @@ export default class Step2 extends Component {
           <MapView.Marker coordinate={this.state.region} />
         </MapView>
 
-        {/* <TouchableOpacity style={styles.button} onPress={this.toggle} underlayColor='#99d9f4'>
+        <TouchableOpacity style={styles.button} onPress={this.toggle} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>เลือกสถานที่เอง</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
-        {/* <AnimatedHideView visible={this.state.isVisible}>
-            <TextInput
-                style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
-            />
-        </AnimatedHideView> */}
+        <AnimatedHideView visible={this.state.isVisible}>
+          <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} onChangeText={text => this.setState({ text })} placeholder={this.state.text} />
+        </AnimatedHideView>
 
       </View>
     )
   }
 }
 const styles = StyleSheet.create({
-  container: {
+  viewContainer: {
+    margin: 10
+  },
+  mapContainer: {
     height: '60%',
     width: '95%',
     alignSelf: 'center'
   },
-  head: {
-    fontSize: 20,
-    color: 'black',
-    alignSelf: 'center'
+  text: {
+    marginBottom: 10,
+    marginTop: 10,
+    color: COLOR.black,
+    fontSize: 18
   },
   buttonText: {
     fontSize: 18,
