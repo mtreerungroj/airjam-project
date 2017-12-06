@@ -100,22 +100,26 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1
+    borderColor: COLOR.grey500,
+    borderWidth: 1,
+    marginLeft: 10,
+    marginRight: 10
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: COLOR.white,
     alignSelf: 'center'
   },
   button: {
     height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
+    backgroundColor: COLOR.cyan500,
+    borderColor: COLOR.cyan700,
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 5,
     marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
   }
