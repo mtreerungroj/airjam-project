@@ -9,6 +9,7 @@ import Step4 from './Step4.request'
 import { getCurrentDate, postJobItem } from '../config/helper'
 
 let dataStore = {}
+const services = { installation: 'ติดตั้งแอร์', cleaning: 'ล้างแอร์', moving: 'ย้ายแอร์', checking: 'ตรวจเช็คสภาพ', problem: 'ปัญหาอื่นๆ' }
 
 export const addNewJobToDatabase = () => {
   return new Promise((resolve, reject) => {
@@ -34,8 +35,19 @@ export default class RequestJob extends Component {
   }
 
   componentDidMount () {
+    this._getSirviceTitle()
     this._setInitialMaps()
     this._setInitialValue()
+  }
+
+  _getSirviceTitle = () => {
+    const service = this.props.service
+    for (const s in services) {
+      if (service == s) {
+        this.setState({ service: services[s] })
+        dataStore.service = services[s]
+      }
+    }
   }
 
   _setInitialValue = () => {
