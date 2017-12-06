@@ -6,8 +6,8 @@ import MapView from 'react-native-maps'
 
 let { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
-const LATITUDE = 0
-const LONGITUDE = 0
+const LATITUDE = 7.0130963
+const LONGITUDE = 100.502331
 const LATITUDE_DELTA = 0.0922
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
@@ -29,45 +29,58 @@ export default class Step2 extends Component {
       isVisible: false,
       text: 'สถานที่ที่ต้องการรับบริการ'
     }
-    this.toggle = this.toggle.bind(this)
   }
 
-  toggle () {
-    console.log('start')
-    this.setState({
-      isVisible: !this.state.visible
-    })
+  // toggle = () => {
+  //   console.log('start')
+  //   this.setState({
+  //     isVisible: !this.state.visible
+  //   })
+  // }
+
+  // componentDidMount () {
+  //   navigator.geolocation.getCurrentPosition(
+  //     position => {
+  //       this.setState({
+  //         region: {
+  //           latitude: position.coords.latitude,
+  //           longitude: position.coords.longitude,
+  //           latitudeDelta: LATITUDE_DELTA,
+  //           longitudeDelta: LONGITUDE_DELTA
+  //         }
+  //       })
+  //     },
+  //     error => console.log(error.message),
+  //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+  //   )
+  //   this.watchID = navigator.geolocation.watchPosition(position => {
+  //     this.setState({
+  //       region: {
+  //         latitude: position.coords.latitude,
+  //         longitude: position.coords.longitude,
+  //         latitudeDelta: LATITUDE_DELTA,
+  //         longitudeDelta: LONGITUDE_DELTA
+  //       }
+  //     })
+  //   })
+  // }
+
+  // componentWillUnmount () {
+  //   navigator.geolocation.clearWatch(this.watchID)
+  // }
+
+  onMapPress = e => {
+    console.log(e.nativeEvent.coordinate.longitude)
+    let region = {
+      latitude: e.nativeEvent.coordinate.latitude,
+      longitude: e.nativeEvent.coordinate.longitude,
+      latitudeDelta: 0.00922 * 1.5,
+      longitudeDelta: 0.00421 * 1.5
+    }
+    // this.onRegionChange(region, region.latitude, region.longitude);
+    this.setState({ region })
   }
 
-  componentDidMount () {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({
-          region: {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA
-          }
-        })
-      },
-      error => console.log(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    )
-    this.watchID = navigator.geolocation.watchPosition(position => {
-      this.setState({
-        region: {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA
-        }
-      })
-    })
-  }
-  componentWillUnmount () {
-    navigator.geolocation.clearWatch(this.watchID)
-  }
   render () {
     return (
       <View>
@@ -76,17 +89,18 @@ export default class Step2 extends Component {
           // provider={PROVIDER_GOOGLE}
           style={styles.container}
           showsUserLocation
-          Region={this.state.region}
-          onRegionChange={region => this.setState({ region })}
-          onRegionChangeComplete={region => this.setState({ region })}
+          region={this.state.region}
+          onPress={this.onMapPress}
+          // onRegionChange={region => this.setState({ region })}
+          // onRegionChangeComplete={region => this.setState({ region })}
         >
 
           <MapView.Marker coordinate={this.state.region} />
         </MapView>
 
-        <TouchableOpacity style={styles.button} onPress={this.toggle} underlayColor='#99d9f4'>
+        {/* <TouchableOpacity style={styles.button} onPress={this.toggle} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>เลือกสถานที่เอง</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* <AnimatedHideView visible={this.state.isVisible}>
             <TextInput
