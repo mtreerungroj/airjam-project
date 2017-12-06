@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, ScrollView, Image, ToastAndroid } from 'react-native'
+import { Platform, StyleSheet, Dimensions, Text, View, ScrollView, Image, ToastAndroid } from 'react-native'
 import StepBar from './StepBar'
 import Step1 from './Step1.request'
 import Step1Problem from './Step1Problem.request'
@@ -31,7 +31,9 @@ export default class RequestJob extends Component {
     this.state = {}
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    this._setInitialMaps()
+  }
 
   _setDateTime = () => {
     let tmpDateTime = getCurrentDate()
@@ -40,7 +42,20 @@ export default class RequestJob extends Component {
     dataStore.time = tmpDateTime.time
   }
 
+  _setInitialMaps = () => {
+    let { width, height } = Dimensions.get('window')
+    const aspectRatio = width / height
+    const latitude = 7.0130963
+    const longitude = 100.502331
+    const latitudeDelta = 0.0922
+    const longitudeDelta = latitudeDelta * aspectRatio
+
+    this.setState({ region: { latitude, longitude, latitudeDelta, longitudeDelta } })
+    dataStore.region = { latitude, longitude, latitudeDelta, longitudeDelta }
+  }
+
   _handleChange = (name, value) => {
+    console.log('valueeeeeeeeeee', value)
     this.setState({ [name]: value })
     dataStore[name] = value
     console.log(this.state)
@@ -54,7 +69,7 @@ export default class RequestJob extends Component {
         else return <Step1 _handleChange={this._handleChange} />
       }
       case 2:
-        return <Step2 _handleChange={this._handleChange} />
+        return <Step2 _handleChange={this._handleChange} _setInitialMaps={this._setInitialMaps} region={this.state.region} />
       case 3: {
         return (
           <Step3
