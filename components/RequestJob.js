@@ -60,9 +60,10 @@ export default class RequestJob extends Component {
       problem5: false,
       problem6: false
     }
-    this.setState({ place, problems, isLoading: false })
+    this.setState({ place, problems, isLoading: false, quantity: 1 })
     dataStore.place = place
     dataStore.problems = problems
+    dataStore.quantity = 1
   }
 
   _setDateTime = () => {
@@ -93,7 +94,7 @@ export default class RequestJob extends Component {
     switch (this.props.step) {
       case 1: {
         if (this.props.service == 'problem') return <Step1Problem _handleChange={this._handleChange} place={this.state.place} problems={this.state.problems} />
-        else return <Step1 _handleChange={this._handleChange} place={this.state.place} />
+        else return <Step1 _handleChange={this._handleChange} place={this.state.place} quantity={this.state.quantity} />
       }
       case 2:
         return <Step2 _handleChange={this._handleChange} _setInitialMaps={this._setInitialMaps} region={this.state.region} />
