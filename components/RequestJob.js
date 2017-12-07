@@ -93,7 +93,7 @@ export default class RequestJob extends Component {
     switch (this.props.step) {
       case 1: {
         if (this.props.service == 'problem') return <Step1Problem _handleChange={this._handleChange} place={this.state.place} problems={this.state.problems} />
-        else return <Step1 _handleChange={this._handleChange} />
+        else return <Step1 _handleChange={this._handleChange} place={this.state.place} />
       }
       case 2:
         return <Step2 _handleChange={this._handleChange} _setInitialMaps={this._setInitialMaps} region={this.state.region} />
