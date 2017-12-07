@@ -3,6 +3,7 @@ import firebase from './firebase'
 const getJobItems = (email, password) => {
   return new Promise((resolve, reject) => {
     let jobItems = []
+    let item = {}
 
     firebase
       .database()
@@ -11,7 +12,9 @@ const getJobItems = (email, password) => {
       .once('value')
       .then(snapshot => {
         snapshot.forEach(childSnapshot => {
-          jobItems.push(childSnapshot.val()) // AESC
+          item = childSnapshot.val()
+          item.key = childSnapshot.key
+          jobItems.push(item) // AESC
         })
       })
       .then(() => {
