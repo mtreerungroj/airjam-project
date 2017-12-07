@@ -1,17 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image, Button, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Picker } from 'react-native'
 import { COLOR } from 'react-native-material-ui'
 import AnimatedHideView from 'react-native-animated-hide-view'
-import t from 'tcomb-form-native'
-
-var Form = t.form.Form
-var placeTypes = t.enums({
-  บ้านเดี่ยว: 'บ้านเดี่ยว',
-  คอนโดมีเนียม: 'คอนโดมีเนียม',
-  'ตึก/สำนักงาน': 'ตึก/สำนักงาน'
-})
-
-var options = {}
 
 export default class Step1Problem extends Component {
   constructor (props) {
@@ -36,8 +26,7 @@ export default class Step1Problem extends Component {
     this.props._handleChange('problems', this.state)
   }
 
-  _onSelect = () => {
-    const place = this.refs.place.getValue()
+  _onSelect = place => {
     this.props._handleChange('place', place)
   }
 
@@ -68,7 +57,11 @@ export default class Step1Problem extends Component {
 
         <Text style={styles.text}>เลือกสถานที่</Text>
         <View style={styles.buttonDown}>
-          <Form ref='place' style={{ backgroundColor: 'red' }} type={placeTypes} options={options} value={this.props.place} onChange={this._onSelect} />
+          <Picker selectedValue={this.props.place} onValueChange={(place, idx) => this._onSelect(place)}>
+            <Picker.Item label='บ้านเดี่ยว' value='บ้านเดี่ยว' />
+            <Picker.Item label='คอนโดมีเนียม' value='คอนโดมีเนียม' />
+            <Picker.Item label='ตึก/สำนักงาน' value='ตึก/สำนักงาน' />
+          </Picker>
         </View>
       </View>
     )
@@ -101,8 +94,12 @@ const styles = StyleSheet.create({
   buttonDown: {
     flexDirection: 'column',
     marginBottom: 10,
-    width: '50%',
-    alignSelf: 'center'
+    paddingLeft: 20,
+    width: '80%',
+    alignSelf: 'center',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: COLOR.grey500
   },
   buttonStyle: {
     flex: 1,

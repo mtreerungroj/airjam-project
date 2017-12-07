@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Platform, StyleSheet, Text, View, TouchableOpacity, Picker } from 'react-native'
 import { COLOR } from 'react-native-material-ui'
-import t from 'tcomb-form-native'
-
-var Form = t.form.Form
-var placeTypes = t.enums({
-  บ้านเดี่ยว: 'บ้านเดี่ยว',
-  คอนโดมีเนียม: 'คอนโดมีเนียม',
-  'ตึก/สำนักงาน': 'ตึก/สำนักงาน'
-})
 
 export default class Step1 extends Component {
-  _onSelect = () => {
-    const place = this.refs.place.getValue()
+  _onSelect = place => {
     this.props._handleChange('place', place)
   }
 
@@ -29,21 +20,26 @@ export default class Step1 extends Component {
       <View style={styles.viewContainer}>
         <Text style={styles.text}>จำนวนแอร์ (เครื่อง)</Text>
         <View style={styles.buttonUp}>
-          <TouchableOpacity style={styles.buttonStyle} onPress={this._decrease}>
+          <TouchableOpacity style={styles.buttonStyleLeft} onPress={this._decrease}>
             <Text style={styles.textButton}>-</Text>
           </TouchableOpacity>
 
           <Text style={styles.textQuantity}>{this.props.quantity}</Text>
 
-          <TouchableOpacity style={styles.buttonStyle} onPress={this._increase}>
+          <TouchableOpacity style={styles.buttonStyleRight} onPress={this._increase}>
             <Text style={styles.textButton}>+</Text>
           </TouchableOpacity>
         </View>
 
         <Text style={styles.text}>เลือกสถานที่</Text>
         <View style={styles.buttonDown}>
-          <Form ref='place' style={{ backgroundColor: 'red' }} type={placeTypes} value={this.props.place} onChange={this._onSelect} />
+          <Picker selectedValue={this.props.place} onValueChange={(place, idx) => this._onSelect(place)}>
+            <Picker.Item label='บ้านเดี่ยว' value='บ้านเดี่ยว' />
+            <Picker.Item label='คอนโดมีเนียม' value='คอนโดมีเนียม' />
+            <Picker.Item label='ตึก/สำนักงาน' value='ตึก/สำนักงาน' />
+          </Picker>
         </View>
+
       </View>
     )
   }
@@ -80,8 +76,8 @@ const styles = StyleSheet.create({
   buttonUp: {
     flexDirection: 'row',
     marginBottom: 10,
-    width: '60%',
-    height: 40,
+    width: '80%',
+    height: 50,
     alignSelf: 'center',
     justifyContent: 'center',
     borderRadius: 10,
@@ -92,15 +88,29 @@ const styles = StyleSheet.create({
   buttonDown: {
     flexDirection: 'column',
     marginBottom: 10,
-    width: '50%',
-    alignSelf: 'center'
+    paddingLeft: 20,
+    width: '80%',
+    alignSelf: 'center',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: COLOR.grey500
   },
-  buttonStyle: {
+  buttonStyleLeft: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 40,
+    width: 50,
     borderWidth: 0,
-    borderRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10,
+    backgroundColor: COLOR.cyan200
+  },
+  buttonStyleRight: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    borderWidth: 0,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
     backgroundColor: COLOR.cyan200
   }
 })
