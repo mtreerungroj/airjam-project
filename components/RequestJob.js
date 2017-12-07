@@ -60,10 +60,11 @@ export default class RequestJob extends Component {
       problem5: false,
       problem6: false
     }
-    this.setState({ place, problems, isLoading: false, quantity: 1 })
+    this.setState({ place, problems, isLoading: false, quantity: 1, isComplete: false })
     dataStore.place = place
     dataStore.problems = problems
     dataStore.quantity = 1
+    dataStore.isComplete = false
   }
 
   _setDateTime = () => {
