@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 5,
     color: COLOR.black,
     alignSelf: 'center',
     fontSize: 18
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   buttonDown: {
     flexDirection: 'column',
-    marginBottom: 10,
+    marginBottom: 8,
     paddingLeft: 20,
     width: '80%',
     alignSelf: 'center',
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: 18,
     backgroundColor: COLOR.grey300,
     borderColor: COLOR.grey500,
     borderWidth: 1,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: 18,
     backgroundColor: COLOR.cyan200,
     borderColor: COLOR.grey500,
     borderWidth: 1,
